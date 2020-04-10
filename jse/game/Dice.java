@@ -1,24 +1,50 @@
 package com.jse.game;
 import java.util.Scanner;
-//시나리오 
-import java.util.Random;//외부의 값을 끌어다오는 것이기때문에 클래스가 필요가없다.
-public class Dice {
-	public static void main(String[] args) {
-		
-		
-		System.out.println("주사위 홀짝 맞춰보기 게임");
-		//System.out<클래스 변수>   .   println("주사위 홀짝 맞춰보기 게임")<클래스 매소드>;
-		System.out.println("기대하는 값 홀/짝을 입력해주세요");
-		
-		Scanner scanner = new Scanner(System.in);
-		String expect = scanner.next();
-		System.out.println("예상 값은 : " + expect);
+import java.util.Random;
 
+public class Dice {
+	private String expect;
+	private int diceNumber;
+	
+	public void setExpect(String expect) {
+		this.expect = expect;
+	}
+	public String getExect() {
+		return expect;
+	}
+	public void setDiceNumber(int diceNumber) {
+		this.diceNumber = diceNumber;
+	}
+	public int getDiceNumber() {
+		return diceNumber;
+	}
+	
+	
+	public String switchDice() {
+		String result = "";
+		switch(diceNumber) {
+		case 1:case 3:case 5: result = "홀"; break;
+		case 2:case 4:case 6: result = "짝"; break;
+		}
+		String result2 = "틀림";
+		if(expect.equals(result)){
+			result2 = "맞음";
+		}
+		System.out.println(String.format("결과: %s", result2));
+		return result2;
+	}
+	
+	
+	public void ifDice() {
+		System.out.println("*** 주사위 홀짝 맞추기 게임 ***");
+		System.out.println("기대하는 값 홀/짝 을 입력해 주세요");
+		Scanner scanner = new Scanner(System.in);
+		String expect = scanner.next(); 
+		System.out.println("사용자 홀짝 예상값 :" + expect);
 		Random random = new Random();
-		int dice = random.nextInt(6);
-		System.out.println("결과 값은 : " + dice);
-		
-		String result = "";// ""디폴트값
+		int dice = random.nextInt(6)+1;
+		System.out.println("컴퓨터가 생성한 값 :" + dice);
+		String result = "";
 		if(dice == 1) {
 			result = "홀";
 		}else if(dice == 2) {
@@ -31,51 +57,21 @@ public class Dice {
 			result = "홀";
 		}else {
 			result = "짝";
-		}
-		System.out.println("홀짝 결과 : " + result);
-		System.out.println("맞음 ");
-		System.out.println("틀림 ");
-		
-		
-		
-		
-		
-		
-//		System.out.println("true");
-//		System.out.println("false");
-		
-		
-//		String result = scanner.next();
-//		int dice = random.next();
-//		System.out.println("예상 값은 : " + dice);
-		System.out.println();
-		main(null);
-		
-		
-		//세번째 예시
-//		System.out.println("주사위 홀짝 맞추기 게임");
-//		System.out.println("기대하는 값(홀/짝)을 입력해주세요");
-//		
-//		Scanner sc = new Scanner(System.in);
-//		String expect = sc.next();
-//		System.out.println("기대하는 값은 : " + expect);
-//		
-//		Random ran = new Random();
-//		int dice = ran.nextInt(6)+1;
-//		System.out.println("결과 값은 : " + dice);
-//	
-//		String result = "";
-//		if(dice == 1,3,5) {
-//			result = "홀수";
-//		}else {
-//			result = "짝";
-//		}
-		
-		
-		
-		
-		
-		
+		} 
+		System.out.println("컴퓨터 홀짝 결과: "+result);
+		if(expect.equals(result)) { // object type 의 operation 은 method로 처리한다.
+			System.out.println("매칭 결과: 맞음");
+		}else {
+			System.out.println("매칭 결과: 틀림");
+		} 
 	}
+	
+	
 
 }
+
+
+
+
+
+

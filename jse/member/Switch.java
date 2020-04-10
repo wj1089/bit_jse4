@@ -1,4 +1,4 @@
-package com.jse.game;
+package com.jse.member;
 
 import java.util.Random;
 import java.util.Scanner;

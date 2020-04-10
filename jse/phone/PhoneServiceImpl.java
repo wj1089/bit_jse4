@@ -2,19 +2,20 @@ package com.jse.phone;
 
 public class PhoneServiceImpl implements PhoneService{
 	
+	private int count;
 	private Phone[] phones;
 	private CelPhone[] celPhones;
 	private Iphone[] iphones;
-	private int count;
 	private GalaxyNote[] galaxyNotes;
 	
 	public PhoneServiceImpl() {
+		count = 0; 
 		phones = new Phone[3];
 		celPhones = new CelPhone[3];
-		count = 0; 
 		iphones = new Iphone[3];
 		galaxyNotes = new GalaxyNote[3];
 	}
+
 	@Override
 	public GalaxyNote[] getGalaxyNotes() {
 		return galaxyNotes;

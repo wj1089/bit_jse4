@@ -21,5 +21,7 @@ public class Constants {
 	public final static String GENDER_MENU ="주민번호를 입력해주세요.(011231-1111222)";
 	public final static String GENDER_INPUT ="귀하의 성별및 신분은 : ";
 
+	public final static String GAME_MENU = "0. 종료";
 	
-}
+	public final static String LOGIN_MENU ="userid,password,name,ssn,information";
+ }
