@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
-public class JoinView extends JFrame implements ActionListener{
+									//implements ActionListener(interface)의 역할을 강제로 지정한 기능을 실행시킨다.
+public class MemberView extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	JButton saveButton, listButton, loginButton;
 	JLabel[] labels;
@@ -20,7 +20,7 @@ public class JoinView extends JFrame implements ActionListener{
 	JTextArea textArea;
 	JPanel panel;
 	MemberService memberService;
-	public JoinView() {
+	public MemberView() {
 		memberService = new MemberServiceImpl();
 	}
 	public void open() {
@@ -69,46 +69,48 @@ public class JoinView extends JFrame implements ActionListener{
 		this.setLocationRelativeTo(null);
 	}
 	@Override//3
-	public void actionPerformed(ActionEvent e) { //******위에 와 어떤relation인가? 
-
+	public void actionPerformed(ActionEvent e) { //
 		if(e.getSource() == saveButton){
+			//ml
 			textFields[0].setText("홍길동,김유신,이순신,신사임당,이도");
 			textFields[1].setText("hong,you,lee,shin,leedo");
 			textFields[2].setText("1,1,1,1,1");
 			textFields[3].setText("980455-1,965714-2,965714-3,910419-4,995945-5");
 			textFields[4].setText("서울,서울,서울,부산,부산");
+			//nlp
 			String data = String.format("%s / %s / %s / %s / %s ",
 					textFields[0].getText(),
 					textFields[1].getText(),
 					textFields[2].getText(),
 					textFields[3].getText(),
 					textFields[4].getText());		
-			String[] arr = data.split("/");
-			Member[] members = new Member[5];
+			String[] arr = data.split("/");//corpus(말뭉치)
 			String[] names = arr[0].split(",");
 			String[] userids = arr[1].split(",");
 			String[] passwords= arr[2].split(",");
 			String[] ssns = arr[3].split(",");
 			String[] addrs = arr[4].split(",");
+			Member[] members = new Member[5];//matrix구조로 변환(2차원구조)
 			
-			for(int i=0;i<5;i++) {
-				members[i]= new Member();
+		for(int i=0;i<5;i++) {
+				members[i]= new Member();//<member[i]> = Member <m> =  new Membe();
 				members[i]. setName(names[i]);
 				members[i]. setUserid(userids[i]);
 				members[i]. setPasswd(passwords[i]);
 				members[i]. setSsn(ssns[i]);
 				members[i]. setAddr(addrs[i]);
-				memberService.add(members[i]);
+				memberService.add(members[i]);//write(쓴다, 보낸다) (void타입) - ㄴㄷㄱ
 			}
 		}else if(e.getSource() == listButton) {
 			JOptionPane.showMessageDialog(this, "클릭!");
 			Member[] members = memberService.getMembers();
+			//read(읽다, 받다) ,parameter가 없고,return타입은 앞에 <Member[] members >이다.
 			for(int i=0;i<members.length;i++) {
 				System.out.println("화면 목록 결과");
-			System.out.println(members[i]);//만약 그냥member가 들어있다면 주소값만 나온다.
-			}							   //member[i]인경우는 element이다
-		}
-		
+				System.out.println(members[i]);//만약 그냥member가 들어있다면 주소값만 나온다.
+			}							  	   //member[i]인경우는 element이다
+		}								     	//[i]에 의미는 한 차원 낮춰주는것이다.
+		//(this, "안녕하세요!<리터럴>"); =" " 이렇게 주는것을 notation - 기호와 
 	}
 }
 			
@@ -133,4 +135,3 @@ public class JoinView extends JFrame implements ActionListener{
 //			}
 //			System.out.println("matrix end");
 			
-			//(this, "안녕하세요!<리터럴>"); =" " 이렇게 주는것을 notation - 기호와 

@@ -18,10 +18,7 @@ import lombok.Data;
 public class Grade {
 	
 	private String name;
-	private int korean;
-	private int english;
-	private int math;
-	private int science;
+	private int korean,english, math, java;
 
 	
 	

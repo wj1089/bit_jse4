@@ -6,7 +6,7 @@ public class MemberSwing {
 	public static void main(String[] args) {//main method() = controller
 //		JoinView joinView = new JoinView();
 //		joinView.execute();
-		new JoinView().open();
+		new MemberView().open();
 	}
 }
 	
