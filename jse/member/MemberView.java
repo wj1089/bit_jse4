@@ -1,137 +1,190 @@
 package com.jse.member;
 
+import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-									//implements ActionListener(interface)의 역할을 강제로 지정한 기능을 실행시킨다.
+
 public class MemberView extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
-	JButton saveButton, listButton, loginButton;
-	JLabel[] labels;
-	JTextField[] textFields;
-	JLabel areaLabel;
-	JTextArea textArea;
-	JPanel panel;
-	MemberService memberService;
-	public MemberView() {
-		memberService = new MemberServiceImpl();
-	}
-	public void open() {
-		this.setSize(600, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		panel = new JPanel();
-		this.add(panel);
-		this.setVisible(true);
-		labels = new JLabel[5];
-		textFields = new JTextField[5];
-		textArea = new JTextArea();
-		String[] names = {"이름","아이디","패스워드","SSN","주소"};
-		for(int i=0;i < names.length;i++) {
-			labels[i] = new JLabel(names[i]);
-			panel.add(labels[i]);
-			textFields[i] = new JTextField();
-			panel.add(textFields[i]);
-		}	
-		areaLabel = new JLabel("검색결과");
-		panel.add(areaLabel);
-		panel.add(textArea);
-		saveButton = new JButton("저장");
-		listButton = new JButton("목록");
-		loginButton = new JButton("로그인");
-		saveButton.addActionListener(this);
-		listButton.addActionListener(this);
-		panel.add(saveButton); 
-		panel.add(listButton);
-		panel.add(loginButton);
-		labels[0].setBounds(40,10,40,40);
-		labels[1].setBounds(40,50,40,40);
-		labels[2].setBounds(40,90,60,40);
-		labels[3].setBounds(40,130,40,40);
-		labels[4].setBounds(40,170,60,40);
-		areaLabel.setBounds(40,210,60,40);
-		textFields[0].setBounds(120,10,200,30);
-		textFields[1].setBounds(120,50,200,30);
-		textFields[2].setBounds(120,90,200,30);
-		textFields[3].setBounds(120,130,280,30);
-		textFields[4].setBounds(120,180,280,30);
-		textArea.setBounds(120,220,280,150);
-		saveButton.setBounds(125,400,80,30);
-		listButton.setBounds(240,400,80,30);
-		loginButton.setBounds(340,400,80,30);
+    private Container container; 
+    private JLabel title,nameLabel,useridLabel,passwordLabel,
+    				ssnLabel,addrLabel; 
+    private JTextField nameText, useridText, passwordText, ssnText,
+    					addrText; 
+    private JTextArea resultText; 
+    private JButton submitButton, listButton, loginButton; 
+    public MemberService memberService;
+    public void open(){ 
+        memberService = new MemberServiceImpl();
+    	setTitle("Swing Form"); 
+        setBounds(300, 90, 900, 600); 
+        setDefaultCloseOperation(EXIT_ON_CLOSE); 
+        setResizable(false); 
+  
+        container = getContentPane(); 
+        container.setLayout(null); 
+  
+        title = new JLabel("Registration Form"); 
+        title.setFont(new Font("Arial", Font.PLAIN, 30)); 
+        title.setSize(300, 30); 
+        title.setLocation(300, 30); 
+        container.add(title); 
+  
+        nameLabel = new JLabel("Name"); 
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        nameLabel.setSize(100, 20); 
+        nameLabel.setLocation(100, 100); 
+        container.add(nameLabel); 
+  
+        nameText = new JTextField(); 
+        nameText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        nameText.setSize(190, 20); 
+        nameText.setLocation(200, 100); 
+        container.add(nameText); 
+  
+        useridLabel = new JLabel("Userid"); 
+        useridLabel.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        useridLabel.setSize(100, 20); 
+        useridLabel.setLocation(100, 150); 
+        container.add(useridLabel); 
+  
+        useridText = new JTextField(); 
+        useridText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        useridText.setSize(150, 20); 
+        useridText.setLocation(200, 150); 
+        container.add(useridText); 
+  
+        passwordLabel = new JLabel("Password"); 
+        passwordLabel.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        passwordLabel.setSize(100, 20); 
+        passwordLabel.setLocation(100, 200); 
+        container.add(passwordLabel); 
+        
+        passwordText = new JTextField(); 
+        passwordText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        passwordText.setSize(150, 20); 
+        passwordText.setLocation(200, 200); 
+        container.add(passwordText);
+  
+        ssnLabel = new JLabel("SSN"); 
+        ssnLabel.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        ssnLabel.setSize(100, 20); 
+        ssnLabel.setLocation(100, 250); 
+        container.add(ssnLabel); 
+        
+        ssnText = new JTextField(); 
+        ssnText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        ssnText.setSize(150, 20); 
+        ssnText.setLocation(200, 250); 
+        container.add(ssnText);
+  
+        addrLabel = new JLabel("Address"); 
+        addrLabel.setFont(new Font("Arial", Font.PLAIN, 20)); 
+        addrLabel.setSize(100, 20); 
+        addrLabel.setLocation(100, 300); 
+        container.add(addrLabel); 
+        
+        addrText = new JTextField(); 
+        addrText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        addrText.setSize(150, 20); 
+        addrText.setLocation(200, 300); 
+        container.add(addrText);
+        
+  
+        submitButton = new JButton("Submit"); 
+        submitButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        submitButton.setSize(100, 20); 
+        submitButton.setLocation(150, 450); 
+        submitButton.addActionListener(this);
+        container.add(submitButton); 
+  
+        listButton = new JButton("List"); 
+        listButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        listButton.setSize(100, 20); 
+        listButton.setLocation(270, 450); 
+        listButton.addActionListener(this);
+        container.add(listButton); 
+  
+        loginButton = new JButton("Login"); 
+        loginButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        loginButton.setSize(100, 20); 
+        loginButton.setLocation(390, 450); 
+        loginButton.addActionListener(this);
+        container.add(loginButton); 
+        
+        resultText = new JTextArea(); 
+        resultText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
+        resultText.setSize(300, 400); 
+        resultText.setLocation(500, 100); 
+        resultText.setLineWrap(true); 
+        resultText.setEditable(false); 
+        container.add(resultText); 
+ 
+        setVisible(true); 
+    } 
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		
-		this.setLocationRelativeTo(null);
-	}
-	@Override//3
-	public void actionPerformed(ActionEvent e) { //
-		if(e.getSource() == saveButton){
-			//ml
-			textFields[0].setText("홍길동,김유신,이순신,신사임당,이도");
-			textFields[1].setText("hong,you,lee,shin,leedo");
-			textFields[2].setText("1,1,1,1,1");
-			textFields[3].setText("980455-1,965714-2,965714-3,910419-4,995945-5");
-			textFields[4].setText("서울,서울,서울,부산,부산");
-			//nlp
-			String data = String.format("%s / %s / %s / %s / %s ",
-					textFields[0].getText(),
-					textFields[1].getText(),
-					textFields[2].getText(),
-					textFields[3].getText(),
-					textFields[4].getText());		
-			String[] arr = data.split("/");//corpus(말뭉치)
+		if(e.getSource() == submitButton) {
+			JOptionPane.showMessageDialog(this, "test");
+			nameText.setText("홍길동,유관순,이순신,신사임당,이도");
+			useridText.setText("hong,you,lee,shin,leedo");
+			passwordText.setText("1,1,1,1,1");
+			ssnText.setText("900101-1,960101-2,980101-1,011010-4,020606-3");
+			addrText.setText("서울,서울,서울,부산,부산");
+			String data = String.format("%s / %s / %s / %s / %s", 
+					nameText.getText(),
+					useridText.getText(),
+					passwordText.getText(),
+					ssnText.getText(),
+					addrText.getText());
+			String[] arr = data.split("/");
 			String[] names = arr[0].split(",");
 			String[] userids = arr[1].split(",");
-			String[] passwords= arr[2].split(",");
+			String[] passwords = arr[2].split(",");
 			String[] ssns = arr[3].split(",");
 			String[] addrs = arr[4].split(",");
-			Member[] members = new Member[5];//matrix구조로 변환(2차원구조)
-			
-		for(int i=0;i<5;i++) {
-				members[i]= new Member();//<member[i]> = Member <m> =  new Membe();
-				members[i]. setName(names[i]);
-				members[i]. setUserid(userids[i]);
-				members[i]. setPasswd(passwords[i]);
-				members[i]. setSsn(ssns[i]);
-				members[i]. setAddr(addrs[i]);
-				memberService.add(members[i]);//write(쓴다, 보낸다) (void타입) - ㄴㄷㄱ
+			Member[] members = new Member[5];
+			for(int i=0;i< 5; i++) {
+				members[i] = new Member(); 
+				members[i].setName(names[i]);
+				members[i].setUserid(userids[i]);
+				members[i].setPasswd(passwords[i]);
+				members[i].setSsn(ssns[i]);
+				members[i].setAddr(addrs[i]);
+				memberService.add(members[i]);
 			}
 		}else if(e.getSource() == listButton) {
-			JOptionPane.showMessageDialog(this, "클릭!");
 			Member[] members = memberService.getMembers();
-			//read(읽다, 받다) ,parameter가 없고,return타입은 앞에 <Member[] members >이다.
-			for(int i=0;i<members.length;i++) {
-				System.out.println("화면 목록 결과");
-				System.out.println(members[i]);//만약 그냥member가 들어있다면 주소값만 나온다.
-			}							  	   //member[i]인경우는 element이다
-		}								     	//[i]에 의미는 한 차원 낮춰주는것이다.
-		//(this, "안녕하세요!<리터럴>"); =" " 이렇게 주는것을 notation - 기호와 
+			String result = "";
+			for(int i=0;i< members.length; i++) {
+				result += (members[i]+"\n");
+			}
+			nameText.setText("");
+			useridText.setText("");
+			passwordText.setText("");
+			ssnText.setText("");
+			addrText.setText("");
+			resultText.setText(result); 
+		}else if(e.getSource() == loginButton) {
+			JOptionPane.showMessageDialog(this, "Login :" + useridText.getText() +","
+												+passwordText.getText() +(","));
+			Member member = new Member();
+			member.setUserid(useridText.getText());
+			member.setPasswd(passwordText.getText());
+			Member returnMember = memberService.login(member);
+				if(returnMember != null) {
+					resultText.setText(returnMember.toString());
+			}else {
+					resultText.setText("로그인 실패");
+			}
+		}
 	}
 }
-			
-			
-//		String[][] mtx = new String[4][5];
-//		System.out.println("matrix start");
-//		String[] arr = data.split("/");
-//		Member member = null;
-//			for(int i=0;i<arr.length;i++) {
-//				String[] t = arr[i].split(",");
-//				for(int j=0;j<t.length;j++) {
-//					mtx[i][j] = t[j];
-//				}
-//				System.out.println();
-//				memberService.add(member);
-//		}
-//			for(int i=0;i<arr.length;i++) {
-//				for(int j=0;j<mtx[i].length;j++) {
-//					System.out.println(mtx[i][j]);
-//				}
-//				System.out.println();
-//			}
-//			System.out.println("matrix end");
-			

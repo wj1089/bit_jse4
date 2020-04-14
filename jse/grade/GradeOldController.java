@@ -1,7 +1,7 @@
 package com.jse.grade;
 import javax.swing.JOptionPane;
 import com.jse.util.Constants;
-		public class GradeController {
+		public class GradeOldController {
 		public static void main(String[] args) {
 			GradeServiceImpl gradeService = new GradeServiceImpl();
 			Grade grade =null;

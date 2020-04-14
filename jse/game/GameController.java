@@ -3,8 +3,9 @@ package com.jse.game;
 import java.util.Random;
 import java.util.Scanner;
 import com.jse.member.Member;
-import com.jse.member.Kaup;
 import com.jse.util.Calculator;
+
+import prac.Kaup;
 
 public class GameController {
 	private String  test;
