@@ -15,23 +15,11 @@ public class PhoneServiceImpl implements PhoneService{
 		iphones = new Iphone[3];
 		galaxyNotes = new GalaxyNote[3];
 	}
-
-	
-	
 	@Override
 	public int count() {
 		return count;
 	}
-	
-	@Override
-	public void add(Phone phone) {//add를 전부 하나로 통일할수있다!
-		phones[count] = phone;
-	}
-	@Override
-	public void add(CelPhone phone) {//celPhoneAdd
-		celPhones[count] = phone;
-		count++;
-	}
+
 	@Override
 	public void add(Iphone Iphone) {//iphoneAdd
 		iphones[count] = Iphone;
@@ -44,34 +32,41 @@ public class PhoneServiceImpl implements PhoneService{
 	}
 
 	@Override
-	public Phone[] list() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Phone detail(Phone phone) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
 	public GalaxyNote[] galaxyList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 	@Override
 	public Iphone[] iList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void update(Phone phone) {
+		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public void delete(Phone phone) {
+		// TODO Auto-generated method stub
+	}
 
+	@Override
+	public void add(Phone phone) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void add(CelPhone calPhone) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Phone[] phoneList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public CelPhone[] celList() {
@@ -79,21 +74,15 @@ public class PhoneServiceImpl implements PhoneService{
 		return null;
 	}
 
-
-
 	@Override
-	public void update(Phone phone) {
+	public GalaxyNote detail(GalaxyNote phone) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-
-
 	@Override
-	public void delete(Phone phone) {
+	public Iphone detail(Iphone phone) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
-		
-	
 }

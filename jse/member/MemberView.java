@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.sun.scenario.effect.impl.state.LinearConvolveRenderState.PassType;
+
 public class MemberView extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
     private Container container; 
@@ -19,12 +21,13 @@ public class MemberView extends JFrame implements ActionListener{
     private JTextField nameText, useridText, passwordText, ssnText,
     					addrText; 
     private JTextArea resultText; 
-    private JButton submitButton, listButton, loginButton; 
+    private JButton submitButton, listButton, loginButton, detailButton, nameButton,
+    				genderButton, countButton, updateButton, deleteButton; 
     public MemberService memberService;
     public void open(){ 
         memberService = new MemberServiceImpl();
     	setTitle("Swing Form"); 
-        setBounds(300, 90, 900, 600); 
+        setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE); 
         setResizable(false); 
   
@@ -97,7 +100,6 @@ public class MemberView extends JFrame implements ActionListener{
         addrText.setLocation(200, 300); 
         container.add(addrText);
         
-  
         submitButton = new JButton("Submit"); 
         submitButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
         submitButton.setSize(100, 20); 
@@ -118,6 +120,49 @@ public class MemberView extends JFrame implements ActionListener{
         loginButton.setLocation(390, 450); 
         loginButton.addActionListener(this);
         container.add(loginButton); 
+        
+        detailButton = new JButton("Detail"); 
+        detailButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        detailButton.setSize(100, 20); 
+        detailButton.setLocation(150, 480); 
+        detailButton.addActionListener(this);
+        container.add(detailButton); 
+        
+        nameButton = new JButton("Name"); 
+        nameButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        nameButton.setSize(100, 20); 
+        nameButton.setLocation(270, 480); 
+        nameButton.addActionListener(this);
+        container.add(nameButton); 
+        
+        genderButton = new JButton("Gender"); 
+        genderButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        genderButton.setSize(100, 20); 
+        genderButton.setLocation(390, 480); 
+        genderButton.addActionListener(this);
+        container.add(genderButton); 
+        
+        countButton = new JButton("count"); 
+        countButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        countButton.setSize(100, 20); 
+        countButton.setLocation(150, 510); 
+        countButton.addActionListener(this);
+        container.add(countButton); 
+        
+        updateButton = new JButton("Update"); 
+        updateButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        updateButton.setSize(100, 20); 
+        updateButton.setLocation(270, 510); 
+        updateButton.addActionListener(this);
+        container.add(updateButton); 
+        
+        deleteButton = new JButton("Delete"); 
+        deleteButton.setFont(new Font("Arial", Font.PLAIN, 15)); 
+        deleteButton.setSize(100, 20); 
+        deleteButton.setLocation(390, 510); 
+        deleteButton.addActionListener(this);
+        container.add(deleteButton); 
+        
         
         resultText = new JTextArea(); 
         resultText.setFont(new Font("맑은고딕", Font.PLAIN, 15)); 
@@ -151,15 +196,15 @@ public class MemberView extends JFrame implements ActionListener{
     			String[] passwords = arr[2].split(",");
     			String[] ssns = arr[3].split(",");
     			String[] addrs = arr[4].split(",");
-    			Member[] members = new Member[5];
+    			Member member = null;
     			for(int i=0;i< 5; i++) {
-    				members[i] = new Member(); 
-    				members[i].setName(names[i]);
-    				members[i].setUserid(userids[i]);
-    				members[i].setPasswd(passwords[i]);
-    				members[i].setSsn(ssns[i]);
-    				members[i].setAddr(addrs[i]);
-    				memberService.add(members[i]);
+    				member = new Member(); 
+    				member.setName(names[i]);
+    				member.setUserid(userids[i]);
+    				member.setPasswd(passwords[i]);
+    				member.setSsn(ssns[i]);
+    				member.setAddr(addrs[i]);
+    				memberService.add(member);
     			}
     		}else if(e.getSource() == listButton) {
     			Member[] members = memberService.list();  
@@ -185,6 +230,40 @@ public class MemberView extends JFrame implements ActionListener{
     			}else {
     					resultText.setText("로그인 실패");
     			}
+    		}else if(e.getSource() == detailButton) {
+    			Member returnMember = memberService.detail(useridText.getText());
+    			if(returnMember != null) {
+    				resultText.setText(returnMember.toString());
+    			}else {
+    				resultText.setText("해당 ID 가 존재하지 않음");
+    			}
+    		}else if(e.getSource() == nameButton) {
+    			Member[] returnMembers = memberService.searchByName(nameText.getText());
+    			if(returnMembers != null) {
+    				String result = "";
+    				for(int i=0; i< returnMembers.length; i++) {
+    					result += returnMembers[i].toString()+"\n";
+    				}
+    				resultText.setText(result);
+    			}else {
+    				resultText.setText("해당 이름이 존재하지 않음");
+    			}
+    		}else if(e.getSource() == genderButton) {
+    			memberService.searchByGender(ssnText.getText());
+    		}else if(e.getSource() == countButton) {
+    			resultText.setText(String.valueOf(memberService.count()));
+    		}else if(e.getSource() == updateButton) {
+    			String userid = useridText.getText();
+    			String newPassword = passwordText.getText();
+    			Member updateMember = new Member();
+    			updateMember.setUserid(userid);
+    			updateMember.setPasswd(newPassword);
+    			memberService.update(updateMember);
+    		}else if(e.getSource() == deleteButton) {
+    			Member deleteMember = new Member();
+    			deleteMember.setUserid(useridText.getText());
+    			deleteMember.setPasswd(passwordText.getText());
+    			memberService.delete(deleteMember);
     		}
     	}
     }

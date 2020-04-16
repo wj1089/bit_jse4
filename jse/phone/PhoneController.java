@@ -19,7 +19,7 @@ public class PhoneController {
 				}
 			break;
 			case "2": 
-					Phone[] phones = service.list();
+					Phone[] phones = service.phoneList();
 					String message = "";
 					for(int i=0;i<3;i++) {
 						message += phones[i].toString();
