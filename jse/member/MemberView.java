@@ -128,63 +128,63 @@ public class MemberView extends JFrame implements ActionListener{
         container.add(resultText); 
  
         setVisible(true); 
-    } 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == submitButton) {
-			JOptionPane.showMessageDialog(this, "test");
-			nameText.setText("홍길동,유관순,이순신,신사임당,이도");
-			useridText.setText("hong,you,lee,shin,leedo");
-			passwordText.setText("1,1,1,1,1");
-			ssnText.setText("900101-1,960101-2,980101-1,011010-4,020606-3");
-			addrText.setText("서울,서울,서울,부산,부산");
-			String data = String.format("%s / %s / %s / %s / %s", 
-					nameText.getText(),
-					useridText.getText(),
-					passwordText.getText(),
-					ssnText.getText(),
-					addrText.getText());
-			String[] arr = data.split("/");
-			String[] names = arr[0].split(",");
-			String[] userids = arr[1].split(",");
-			String[] passwords = arr[2].split(",");
-			String[] ssns = arr[3].split(",");
-			String[] addrs = arr[4].split(",");
-			Member[] members = new Member[5];
-			for(int i=0;i< 5; i++) {
-				members[i] = new Member(); 
-				members[i].setName(names[i]);
-				members[i].setUserid(userids[i]);
-				members[i].setPasswd(passwords[i]);
-				members[i].setSsn(ssns[i]);
-				members[i].setAddr(addrs[i]);
-				memberService.add(members[i]);
-			}
-		}else if(e.getSource() == listButton) {
-			Member[] members = memberService.getMembers();
-			String result = "";
-			for(int i=0;i< members.length; i++) {
-				result += (members[i]+"\n");
-			}
-			nameText.setText("");
-			useridText.setText("");
-			passwordText.setText("");
-			ssnText.setText("");
-			addrText.setText("");
-			resultText.setText(result); 
-		}else if(e.getSource() == loginButton) {
-			JOptionPane.showMessageDialog(this, "Login :" + useridText.getText() +","
-												+passwordText.getText() +(","));
-			Member member = new Member();
-			member.setUserid(useridText.getText());
-			member.setPasswd(passwordText.getText());
-			Member returnMember = memberService.login(member);
-				if(returnMember != null) {
-					resultText.setText(returnMember.toString());
-			}else {
-					resultText.setText("로그인 실패");
-			}
-		}
-	}
-}
+    }
+        @Override
+    	public void actionPerformed(ActionEvent e) {
+    		
+    		if(e.getSource() == submitButton) {
+    			JOptionPane.showMessageDialog(this, "test");
+    			nameText.setText("홍길동,유관순,이순신,신사임당,이도");
+    			useridText.setText("hong,you,lee,shin,leedo");
+    			passwordText.setText("1,1,1,1,1");
+    			ssnText.setText("900101-1,960101-2,980101-1,011010-4,020606-3");
+    			addrText.setText("서울,서울,서울,부산,부산");
+    			String data = String.format("%s / %s / %s / %s / %s", 
+    					nameText.getText(),
+    					useridText.getText(),
+    					passwordText.getText(),
+    					ssnText.getText(),
+    					addrText.getText());
+    			String[] arr = data.split("/");
+    			String[] names = arr[0].split(",");
+    			String[] userids = arr[1].split(",");
+    			String[] passwords = arr[2].split(",");
+    			String[] ssns = arr[3].split(",");
+    			String[] addrs = arr[4].split(",");
+    			Member[] members = new Member[5];
+    			for(int i=0;i< 5; i++) {
+    				members[i] = new Member(); 
+    				members[i].setName(names[i]);
+    				members[i].setUserid(userids[i]);
+    				members[i].setPasswd(passwords[i]);
+    				members[i].setSsn(ssns[i]);
+    				members[i].setAddr(addrs[i]);
+    				memberService.add(members[i]);
+    			}
+    		}else if(e.getSource() == listButton) {
+    			Member[] members = memberService.list();  
+    			String result = "";
+    			for(int i=0;i< members.length; i++) {
+    				result += (members[i]+"\n");
+    			}
+    			nameText.setText("");
+    			useridText.setText("");
+    			passwordText.setText("");
+    			ssnText.setText("");
+    			addrText.setText("");
+    			resultText.setText(result); 
+    		}else if(e.getSource() == loginButton) {
+    			JOptionPane.showMessageDialog(this, "Login :" + useridText.getText() +","
+    												+passwordText.getText() +(","));
+    			Member member = new Member();
+    			member.setUserid(useridText.getText());
+    			member.setPasswd(passwordText.getText());
+    			Member returnMember = memberService.login(member);
+    				if(returnMember != null) {
+    					resultText.setText(returnMember.toString());
+    			}else {
+    					resultText.setText("로그인 실패");
+    			}
+    		}
+    	}
+    }

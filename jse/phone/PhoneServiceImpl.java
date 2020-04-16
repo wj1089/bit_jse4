@@ -16,44 +16,10 @@ public class PhoneServiceImpl implements PhoneService{
 		galaxyNotes = new GalaxyNote[3];
 	}
 
+	
+	
 	@Override
-	public GalaxyNote[] getGalaxyNotes() {
-		return galaxyNotes;
-	}
-	@Override
-	public void setGalaxyNotes(GalaxyNote[] galaxyNotes) {
-		this.galaxyNotes = galaxyNotes;
-	}
-	@Override
-	public Iphone[] getIphones() {
-		return iphones;
-	}
-	@Override
-	public void setIphones(Iphone[] iphones) {
-		this.iphones = iphones;
-	}
-	@Override
-	public CelPhone[] getCelPhones() {
-		return celPhones;
-	}
-	@Override
-	public void setCelPhones(CelPhone[] celPhones) {
-		this.celPhones = celPhones;
-	}
-	@Override
-	public Phone[] getPhones() {
-		return phones;
-	}
-	@Override
-	public void setPhones(Phone[] phones) {
-		this.phones = phones;
-	}
-	@Override
-	public void setCount(int count) {
-		this.count = count;
-	}
-	@Override
-	public int getCount() {
+	public int count() {
 		return count;
 	}
 	
@@ -75,6 +41,58 @@ public class PhoneServiceImpl implements PhoneService{
 	public void add(GalaxyNote galaxyNote) {//galaxyNoteAdd
 		galaxyNotes[count] = galaxyNote;
 		count++;
+	}
+
+	@Override
+	public Phone[] list() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Phone detail(Phone phone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public GalaxyNote[] galaxyList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Iphone[] iList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public CelPhone[] celList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void update(Phone phone) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void delete(Phone phone) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 	

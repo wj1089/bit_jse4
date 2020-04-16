@@ -8,14 +8,7 @@ public class MemberServiceImpl implements MemberService {
 		members = new Member[5];
 	}
 
-	@Override
-	public void setMembers(Member[] members) {
-		this.members = new Member[5];
-	}
-	@Override
-	public Member[] getMembers() {
-		return members;
-	}
+	
 	@Override
 	public void add(Member member) {
 		System.out.println("서비스로 들어온 맴버");
@@ -40,9 +33,28 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 		return returnMember;
+		// 지금 외부에서 맴버타입에 맴버를 받았고, 로그인이라는 공간을 주고, 
+		// 입력한 아이디와 비밀번호는 비교하면서, 참인지 거짓인지 판별, 
+		// 그리고 로그인에 맴버라는 파라미터값을 줌으로 써, 마지막 리턴값(결과)으로 반환.
 	}
-	// 지금 외부에서 맴버타입에 맴버를 받았고, 로그인이라는 공간을 주고, 
-	// 입력한 아이디와 비밀번호는 비교하면서, 참인지 거짓인지 판별, 
-	// 그리고 로그인에 맴버라는 파라미터값을 줌으로 써, 마지막 리턴값(결과)으로 반환.
-	
+
+
+	@Override
+	public Member[] list() {
+		return null;
+	}
+	@Override
+	public Member detail(Member member) {
+		return null;
+	}
+	@Override
+	public int count() {
+		return 0;
+	}
+	@Override
+	public void update(Member member) {
+	}
+	@Override
+	public void delete(Member member) {
+	}
 }

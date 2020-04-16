@@ -16,12 +16,11 @@ import com.jse.util.Constants;
 									grade.setKorean(Integer.parseInt(values[1]));
 									grade.setEnglish(Integer.parseInt(values[2]));
 									grade.setMath(Integer.parseInt(values[3]));
-									grade.setScience(Integer.parseInt(values[4]));
 									gradeService.add(grade);
 									}
 				break;
 				case "2": System.out.println("성적표 출력");
-				JOptionPane.showMessageDialog(null, gradeService.getGrades());
+				JOptionPane.showMessageDialog(null, gradeService.list());
 				
 				break;
 				

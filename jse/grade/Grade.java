@@ -21,14 +21,6 @@ public class Grade {
 	private int korean,english, math, java;
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
 //	public Grade(String name,int korean,int english, int math,int science) {
 //			this.name = name;
 //			this.korean = korean;

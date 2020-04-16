@@ -9,4 +9,3 @@ public class MemberSwing {
 		new MemberView().open();
 	}
 }
-	

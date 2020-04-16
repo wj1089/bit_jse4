@@ -19,7 +19,7 @@ import com.jse.util.Constants;
 						break;
 				
 			case "2": 
-				JOptionPane.showMessageDialog(null, cardService.getCards());
+				JOptionPane.showMessageDialog(null, cardService.list());
 					break;
 				
 				
